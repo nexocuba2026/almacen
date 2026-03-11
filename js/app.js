@@ -70,7 +70,7 @@ card.classList.add("stock-bajo")
 
 }
 
-card.innerHTML=`
+card.innerHTML = `
 
 <img src="${producto.imagen || 'assets/placeholder.png'}">
 
@@ -157,6 +157,8 @@ sidebar.innerHTML = `
 `
 
 document.body.appendChild(sidebar)
+
+/* botón del footer */
 
 const btnCategorias = document.getElementById("btnCategorias")
 
