@@ -2,34 +2,33 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Almacén</title>
 
 <link rel="stylesheet" href="css/styles.css">
-
 <link rel="manifest" href="manifest.json">
 
 </head>
 
 <body>
 
+<!-- Header dinámico -->
 <div id="header"></div>
 
+<!-- Contenedor productos -->
 <section id="productosContainer" class="productos-grid"></section>
 
+<!-- Footer dinámico -->
 <div id="footer"></div>
 
+<!-- Carga de componentes header/footer -->
 <script type="module">
-
 import { cargarComponentes } from "./js/loadComponents.js"
-
 cargarComponentes()
-
 </script>
 
+<!-- Lógica principal -->
 <script type="module" src="js/app.js"></script>
 
 </body>
