@@ -163,3 +163,54 @@ if(e.target===modal) modal.remove()
 }
 
 }
+const sidebar = document.getElementById("sidebarCategorias")
+
+const btnCategorias = document.getElementById("btnCategorias")
+
+const tituloCategoria = document.getElementById("tituloCategoria")
+
+
+
+/* ABRIR SIDEBAR */
+
+if(btnCategorias){
+
+btnCategorias.onclick=()=>{
+
+sidebar.classList.toggle("open")
+
+}
+
+}
+
+
+
+/* FILTRAR CATEGORIAS */
+
+sidebar.querySelectorAll("button").forEach(btn=>{
+
+btn.onclick=()=>{
+
+const categoria = btn.dataset.cat
+
+sidebar.classList.remove("open")
+
+if(categoria==="todos"){
+
+tituloCategoria.innerText="Todos los productos"
+
+renderProductos(productos)
+
+}else{
+
+tituloCategoria.innerText=categoria
+
+const filtrados = productos.filter(p=>p.categoria===categoria)
+
+renderProductos(filtrados)
+
+}
+
+}
+
+})
