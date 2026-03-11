@@ -1,87 +1,251 @@
-/* botones header */
+/* ----------- CONFIGURACION GENERAL ----------- */
 
-.header-actions{
+body{
+margin:0;
+font-family:Arial, Helvetica, sans-serif;
+background:#f5f6fa;
+padding-bottom:80px;
+}
+
+.page-title{
+padding:20px;
+}
+
+/* ----------- HEADER ----------- */
+
+.header{
 
 display:flex;
-gap:10px;
+justify-content:space-between;
+align-items:center;
 
+padding:10px 20px;
+
+background:white;
+
+box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo img{
+width:40px;
+}
+
+/* ----------- BOTONES ENTRADAS Y SALIDAS ----------- */
+
+.header-actions{
+display:flex;
+gap:10px;
 }
 
 .btn{
-
 padding:8px 14px;
 border:none;
 border-radius:10px;
 color:white;
 cursor:pointer;
-
 }
 
 .entrada{
-
 background:#16a34a;
-
 }
 
 .salida{
-
 background:#dc2626;
-
 }
 
-/* buscador */
+/* ----------- BUSCADOR ----------- */
 
 .search{
-
 display:flex;
 gap:10px;
 padding:10px 20px;
-
 }
 
 .search input{
-
 flex:1;
-
+padding:10px;
+border-radius:10px;
+border:1px solid #ddd;
 }
 
-/* sidebar */
-
-#sidebarCategorias{
-
-position:fixed;
-left:-250px;
-top:0;
-width:250px;
-height:100%;
-background:white;
-box-shadow:5px 0 10px rgba(0,0,0,0.1);
-transition:0.3s;
-z-index:1000;
-
+.search button{
+padding:10px 16px;
+border:none;
+border-radius:8px;
+background:#3b82f6;
+color:white;
+cursor:pointer;
 }
 
-#sidebarCategorias.open{
+/* ----------- GRID DE PRODUCTOS ----------- */
 
-left:0;
+.productos-grid{
 
-}
+display:grid;
 
-.sidebar{
+grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+
+gap:15px;
 
 padding:20px;
 
 }
 
+/* ----------- TARJETA PRODUCTO ----------- */
+
+.producto{
+
+background:white;
+
+border-radius:14px;
+
+padding:15px;
+
+box-shadow:0 5px 12px rgba(0,0,0,0.08);
+
+cursor:pointer;
+
+transition:0.2s;
+
+}
+
+.producto:hover{
+transform:translateY(-3px);
+}
+
+.producto img{
+width:100%;
+border-radius:10px;
+}
+
+.producto h3{
+margin:8px 0;
+font-size:16px;
+}
+
+.producto p{
+margin:2px 0;
+font-size:14px;
+}
+
+/* ----------- STOCK BAJO ----------- */
+
+.stock-bajo{
+border:2px solid red;
+}
+
+/* ----------- FOOTER ----------- */
+
+.footer{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+background:white;
+
+padding:10px 0;
+
+box-shadow:0 -4px 10px rgba(0,0,0,0.1);
+
+z-index:1000;
+
+}
+
+.footer button{
+
+border:none;
+
+background:none;
+
+font-size:14px;
+
+cursor:pointer;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:3px;
+
+}
+
+/* ----------- SIDEBAR CATEGORIAS ----------- */
+
+#sidebarCategorias{
+
+position:fixed;
+
+left:-250px;
+
+top:0;
+
+width:250px;
+
+height:100%;
+
+background:white;
+
+box-shadow:5px 0 10px rgba(0,0,0,0.1);
+
+transition:0.3s;
+
+z-index:2000;
+
+}
+
+#sidebarCategorias.open{
+left:0;
+}
+
+.sidebar{
+padding:20px;
+}
+
+.sidebar h3{
+margin-top:0;
+}
+
 .sidebar button{
 
 display:block;
+
 width:100%;
+
 margin:10px 0;
+
 padding:10px;
+
 border:none;
+
 border-radius:8px;
-background:#eee;
+
+background:#eeeeee;
+
 cursor:pointer;
 
+transition:0.2s;
+
+}
+
+.sidebar button:hover{
+background:#ddd;
 }
