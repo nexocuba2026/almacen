@@ -1,83 +1,84 @@
-import { supabase } from "./supabaseClient.js"
+// PRODUCTOS EJEMPLO
+
+let productos = [
+
+{
+id:1,
+nombre:"Tornillo acero",
+categoria:"Tornillería",
+stock:120,
+precio:0.50,
+descripcion:"Tornillo de acero inoxidable para uso industrial",
+proveedor:"Ferretería Central",
+fecha:"2026-03-11",
+almacenero:"Carlos",
+imagen:"img/tornillo.jpg"
+},
+
+{
+id:2,
+nombre:"Arroz premium",
+categoria:"Alimentos",
+stock:60,
+precio:1.20,
+descripcion:"Arroz blanco premium 1kg",
+proveedor:"Distribuidora Alimentos SA",
+fecha:"2026-03-10",
+almacenero:"Luis",
+imagen:"img/arroz.jpg"
+}
+
+]
+
+
 
 const container = document.getElementById("productosContainer")
 
-let productos = []
+const modal = document.getElementById("modalProducto")
 
-async function cargarProductos(){
+const detalleProducto = document.getElementById("detalleProducto")
 
-const { data, error } = await supabase
-.from("productos")
-.select("*")
+const cerrarModal = document.getElementById("cerrarModal")
 
-if(error){
-console.error(error)
-return
-}
-
-productos = data
-
-renderProductos(productos)
-
-}
-
-cargarProductos()
+const tituloCategoria = document.getElementById("tituloCategoria")
 
 
+
+/* MOSTRAR PRODUCTOS */
 
 function renderProductos(lista){
 
 container.innerHTML=""
 
-lista.forEach(producto=>{
+lista.forEach(p=>{
 
-const card = document.createElement("div")
+let tarjeta=document.createElement("div")
 
-card.className="producto"
+tarjeta.className="producto"
 
-if(producto.stock <= producto.limite_stock){
-card.classList.add("stock-bajo")
-}
+if(p.stock<=10) tarjeta.classList.add("stock-bajo")
 
-card.innerHTML = `
+tarjeta.innerHTML=`
 
-<img src="${producto.imagen || 'assets/placeholder.png'}">
+<img src="${p.imagen}">
 
-<p class="numero">No: ${producto.numero_inventario}</p>
+<h3>${p.nombre}</h3>
 
-<h3>${producto.nombre}</h3>
+<p><b>No:</b> ${p.id}</p>
 
-<p class="stock">Cantidad: ${producto.stock}</p>
+<p><b>Stock:</b> ${p.stock}</p>
 
-<p class="precio">$${producto.precio_salida}</p>
+<p><b>Precio:</b> $${p.precio}</p>
 
-<p class="categoria">${producto.categoria}</p>
+<p><b>Categoría:</b> ${p.categoria}</p>
 
 <button class="btn-agregar">+</button>
 
 `
 
+tarjeta.onclick=()=>abrirProducto(p)
 
-/* BOTON + */
-
-card.querySelector(".btn-agregar").onclick=(e)=>{
-
-e.stopPropagation()
-
-agregarStock(producto)
-
-}
-
-
-/* ABRIR DETALLE */
-
-card.onclick=()=>{
-
-abrirProducto(producto)
-
-}
-
-container.appendChild(card)
+container.appendChild(tarjeta)
 
 })
 
@@ -85,95 +86,75 @@ container.appendChild(card)
 
 
 
-/* AGREGAR STOCK */
-
-async function agregarStock(producto){
-
-let cantidad = prompt("Cantidad a agregar")
-
-if(!cantidad) return
-
-let nuevoStock = producto.stock + parseInt(cantidad)
-
-await supabase
-.from("productos")
-.update({stock:nuevoStock})
-.eq("id",producto.id)
-
-producto.stock = nuevoStock
-
 renderProductos(productos)
 
-}
 
 
+/* MODAL PRODUCTO */
 
-/* TARJETA AMPLIADA */
+function abrirProducto(p){
 
-function abrirProducto(producto){
+detalleProducto.innerHTML=`
 
-const modal = document.createElement("div")
+<img src="${p.imagen}" style="width:100%;border-radius:8px">
 
-modal.className="modal open"
+<h2>${p.nombre}</h2>
 
-modal.innerHTML=`
+<p><b>No inventario:</b> ${p.id}</p>
 
-<div class="modal-content">
+<p><b>Stock:</b> ${p.stock}</p>
 
-<span class="modal-close">×</span>
+<p><b>Precio:</b> $${p.precio}</p>
 
-<img src="${producto.imagen}" style="width:100%;border-radius:10px">
+<p><b>Categoría:</b> ${p.categoria}</p>
 
-<h2>${producto.nombre}</h2>
+<p><b>Descripción:</b> ${p.descripcion}</p>
 
-<p>No Inventario: ${producto.numero_inventario}</p>
+<p><b>Proveedor:</b> ${p.proveedor}</p>
 
-<p>Stock: ${producto.stock}</p>
+<p><b>Fecha entrada:</b> ${p.fecha}</p>
 
-<p>Precio Entrada: $${producto.precio_entrada}</p>
-
-<p>Precio Salida: $${producto.precio_salida}</p>
-
-<p>Categoria: ${producto.categoria}</p>
-
-<p>Proveedor: ${producto.proveedor}</p>
-
-<p>Fecha Entrada: ${producto.fecha_entrada}</p>
-
-<p>Almacenero: ${producto.almacenero}</p>
-
-<p>${producto.descripcion}</p>
-
-</div>
+<p><b>Almacenero:</b> ${p.almacenero}</p>
 
 `
 
-document.body.appendChild(modal)
-
-modal.querySelector(".modal-close").onclick=()=>{
-
-modal.remove()
+modal.style.display="flex"
 
 }
 
-modal.onclick=(e)=>{
 
-if(e.target===modal) modal.remove()
+
+cerrarModal.onclick=()=>{
+
+modal.style.display="none"
 
 }
 
+
+
+/* BUSCADOR */
+
+const buscadorInput=document.getElementById("buscadorInput")
+
+const btnBuscar=document.getElementById("btnBuscar")
+
+btnBuscar.onclick=()=>{
+
+let texto=buscadorInput.value.toLowerCase()
+
+let filtrados=productos.filter(p=>p.nombre.toLowerCase().includes(texto))
+
+renderProductos(filtrados)
+
 }
-const sidebar = document.getElementById("sidebarCategorias")
-
-const btnCategorias = document.getElementById("btnCategorias")
-
-const tituloCategoria = document.getElementById("tituloCategoria")
 
 
 
-/* ABRIR SIDEBAR */
+/* CATEGORIAS */
 
-if(btnCategorias){
+const btnCategorias=document.getElementById("btnCategorias")
+
+const sidebar=document.getElementById("sidebarCategorias")
 
 btnCategorias.onclick=()=>{
 
@@ -181,21 +162,19 @@ sidebar.classList.toggle("open")
 
 }
 
-}
 
 
+const botonesCategorias=sidebar.querySelectorAll("button")
 
-/* FILTRAR CATEGORIAS */
-
-sidebar.querySelectorAll("button").forEach(btn=>{
+botonesCategorias.forEach(btn=>{
 
 btn.onclick=()=>{
 
-const categoria = btn.dataset.cat
+let cat=btn.dataset.cat
 
 sidebar.classList.remove("open")
 
-if(categoria==="todos"){
+if(cat==="todos"){
 
 tituloCategoria.innerText="Todos los productos"
 
@@ -203,9 +182,9 @@ renderProductos(productos)
 
 }else{
 
-tituloCategoria.innerText=categoria
+tituloCategoria.innerText=cat
 
-const filtrados = productos.filter(p=>p.categoria===categoria)
+let filtrados=productos.filter(p=>p.categoria===cat)
 
 renderProductos(filtrados)
 
