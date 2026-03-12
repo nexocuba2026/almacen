@@ -14,117 +14,51 @@
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 />
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
 </head>
-
-
 
 <body>
 
-
-
-<!-- HEADER -->
-
-<header class="header">
-
-<div class="logo">
-<img src="img/logo.png">
-<h2>Almacén</h2>
-</div>
-
-<div class="acciones">
-<button id="btnEntradas">Entradas</button>
-<button id="btnSalidas">Salidas</button>
-</div>
-
-</header>
-
-
+<div id="header"></div>
 
 <!-- BUSCADOR -->
-
 <div class="buscador">
-
 <input id="buscadorInput" type="text" placeholder="Buscar producto">
-
 <button id="btnBuscar">
 <i class="fa-solid fa-search"></i>
 </button>
-
 </div>
-
-
 
 <h2 id="tituloCategoria">Todos los productos</h2>
 
-
-
 <!-- SIDEBAR CATEGORIAS -->
-
 <div id="sidebarCategorias" class="sidebar-categorias">
-
 <h3>Categorías</h3>
-
 <button data-cat="todos">Todos</button>
 <button data-cat="Tornillería">Tornillería</button>
 <button data-cat="Alimentos">Alimentos</button>
 <button data-cat="Herramientas">Herramientas</button>
 <button data-cat="Eléctricos">Eléctricos</button>
-
 </div>
-
-
 
 <!-- PRODUCTOS -->
-
 <div id="productosContainer" class="productos-grid"></div>
 
-
-
 <!-- MODAL PRODUCTO -->
-
 <div id="modalProducto" class="modal" style="display:none">
-
 <div class="modal-content">
-
 <span id="cerrarModal" class="modal-close">&times;</span>
-
 <div id="detalleProducto"></div>
-
+</div>
 </div>
 
-</div>
+<div id="footer"></div>
 
-
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-<button onclick="location.reload()">
-<i class="fa-solid fa-house"></i>
-<span>Inicio</span>
-</button>
-
-<button id="btnCategorias">
-<i class="fa-solid fa-layer-group"></i>
-<span>Categorías</span>
-</button>
-
-<button>
-<i class="fa-solid fa-truck"></i>
-<span>Proveedores</span>
-</button>
-
-<button>
-<i class="fa-solid fa-chart-column"></i>
-<span>Estadísticas</span>
-</button>
-
-</footer>
-
-
-
+<script type="module" src="js/loadComponents.js"></script>
+<script type="module" src="js/supabase.js"></script>
 <script type="module" src="js/app.js"></script>
+<script type="module" src="js/auth.js"></script>
 
 </body>
 </html>
