@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Almacén</title>
+<link rel="stylesheet" href="css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script type="module" src="js/supabase.js"></script>
+</head>
+<body>
+<div class="login-box">
+<h2>Acceso Almacén</h2>
+<input type="email" id="email" placeholder="Correo">
+<input type="password" id="password" placeholder="Contraseña">
+<button id="btnLogin">Entrar</button>
+<p id="error"></p>
+</div>
+
+<script type="module">
+import { supabase } from "./js/supabase.js"
+
+const btnLogin = document.getElementById("btnLogin")
+const error = document.getElementById("error")
+
+btnLogin.onclick = async ()=>{
+  const email = document.getElementById("email").value
+  const password = document.getElementById("password").value
+
+  const { data, error: err } = await supabase.auth.signInWithPassword({ email, password })
+
+  if(err){
+    error.innerText = "Correo o contraseña incorrectos"
+    return
+  }
+
+  // Redirigir a index.html
+  window.location.href="index.html"
+}
+</script>
+</body>
+</html>
