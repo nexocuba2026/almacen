@@ -1,17 +1,25 @@
-/* ----------- CONFIGURACION GENERAL ----------- */
+
+/* RESET */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+
+
+/* BODY */
 
 body{
-margin:0;
-font-family:Arial, Helvetica, sans-serif;
-background:#f5f6fa;
-padding-bottom:80px;
+background:#f5f5f5;
+padding-bottom:90px;
 }
 
-.page-title{
-padding:20px;
-}
 
-/* ----------- HEADER ----------- */
+
+/* HEADER */
 
 .header{
 
@@ -19,11 +27,12 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 
-padding:10px 20px;
+padding:15px;
 
 background:white;
 
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+
 }
 
 .logo{
@@ -36,82 +45,119 @@ gap:10px;
 width:40px;
 }
 
-/* ----------- BOTONES ENTRADAS Y SALIDAS ----------- */
+.acciones button{
 
-.header-actions{
-display:flex;
-gap:10px;
-}
-
-.btn{
-padding:8px 14px;
 border:none;
-border-radius:10px;
-color:white;
-cursor:pointer;
-}
 
-.entrada{
-background:#16a34a;
-}
-
-.salida{
-background:#dc2626;
-}
-
-/* ----------- BUSCADOR ----------- */
-
-.search{
-display:flex;
-gap:10px;
-padding:10px 20px;
-}
-
-.search input{
-flex:1;
-padding:10px;
-border-radius:10px;
-border:1px solid #ddd;
-}
-
-.search button{
-padding:10px 16px;
-border:none;
-border-radius:8px;
 background:#3b82f6;
+
 color:white;
+
+padding:8px 12px;
+
+border-radius:6px;
+
 cursor:pointer;
+
+margin-left:5px;
+
 }
 
-/* ----------- GRID DE PRODUCTOS ----------- */
+.acciones button:hover{
+background:#2563eb;
+}
+
+
+
+/* BUSCADOR */
+
+.buscador{
+
+display:flex;
+
+padding:15px;
+
+gap:10px;
+
+}
+
+.buscador input{
+
+flex:1;
+
+padding:10px;
+
+border-radius:6px;
+
+border:1px solid #ccc;
+
+}
+
+.buscador button{
+
+background:#3b82f6;
+
+border:none;
+
+color:white;
+
+padding:10px 14px;
+
+border-radius:6px;
+
+cursor:pointer;
+
+}
+
+
+
+/* TITULO CATEGORIA */
+
+#tituloCategoria{
+
+padding-left:15px;
+
+margin-bottom:10px;
+
+font-size:18px;
+
+}
+
+
+
+/* GRID PRODUCTOS */
 
 .productos-grid{
 
 display:grid;
 
-grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 
 gap:15px;
 
-padding:20px;
+padding:15px;
 
 }
 
-/* ----------- TARJETA PRODUCTO ----------- */
+
+
+/* TARJETA PRODUCTO */
 
 .producto{
 
 background:white;
 
-border-radius:14px;
+border-radius:10px;
 
-padding:15px;
+padding:10px;
 
-box-shadow:0 5px 12px rgba(0,0,0,0.08);
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 
 cursor:pointer;
 
 transition:0.2s;
+
+position:relative;
 
 }
 
@@ -120,190 +166,73 @@ transform:translateY(-3px);
 }
 
 .producto img{
-width:100%;
-border-radius:10px;
-}
-
-.producto h3{
-margin:8px 0;
-font-size:16px;
-}
-
-.producto p{
-margin:2px 0;
-font-size:14px;
-}
-
-/* ----------- STOCK BAJO ----------- */
-
-.stock-bajo{
-border:2px solid red;
-}
-
-/* ----------- FOOTER ----------- */
-
-.footer{
-
-position:fixed;
-
-bottom:0;
-
-left:0;
 
 width:100%;
 
-display:flex;
+height:120px;
 
-justify-content:space-around;
-
-align-items:center;
-
-background:white;
-
-padding:10px 0;
-
-box-shadow:0 -4px 10px rgba(0,0,0,0.1);
-
-z-index:1000;
-
-}
-
-.footer button{
-
-border:none;
-
-background:none;
-
-font-size:14px;
-
-cursor:pointer;
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-gap:3px;
-
-}
-
-/* ----------- SIDEBAR CATEGORIAS ----------- */
-
-#sidebarCategorias{
-
-position:fixed;
-
-left:-250px;
-
-top:0;
-
-width:250px;
-
-height:100%;
-
-background:white;
-
-box-shadow:5px 0 10px rgba(0,0,0,0.1);
-
-transition:0.3s;
-
-z-index:2000;
-
-}
-
-#sidebarCategorias.open{
-left:0;
-}
-
-.sidebar{
-padding:20px;
-}
-
-.sidebar h3{
-margin-top:0;
-}
-
-.sidebar button{
-
-display:block;
-
-width:100%;
-
-margin:10px 0;
-
-padding:10px;
-
-border:none;
+object-fit:cover;
 
 border-radius:8px;
 
-background:#eeeeee;
-
-cursor:pointer;
-
-transition:0.2s;
+margin-bottom:5px;
 
 }
 
-.sidebar button:hover{
-background:#ddd;
-}
-/* BOTON + EN TARJETA */
-.producto .btn-agregar{
-background:#3b82f6;
-color:white;
-border:none;
-border-radius:6px;
-padding:5px 10px;
-cursor:pointer;
-margin-top:5px;
+.producto h3{
+
+font-size:16px;
+
+margin:5px 0;
+
 }
 
-/* MODAL */
-.modal{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.5);
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:3000;
-opacity:0;
-pointer-events:none;
-transition:0.3s;
+.producto p{
+
+font-size:14px;
+
 }
 
-.modal.open{
-opacity:1;
-pointer-events:auto;
-}
 
-.modal-content{
-background:white;
-border-radius:12px;
-padding:20px;
-max-width:400px;
-width:90%;
-max-height:80%;
-overflow-y:auto;
-position:relative;
-}
 
-.modal-content h3{
-margin-top:0;
-}
+/* BOTON + */
 
-.modal-close{
+.btn-agregar{
+
 position:absolute;
-top:10px;
-right:15px;
-font-size:20px;
+
+right:10px;
+
+bottom:10px;
+
+background:#3b82f6;
+
+color:white;
+
+border:none;
+
+border-radius:6px;
+
+padding:5px 10px;
+
 cursor:pointer;
+
 }
+
+
+
+/* STOCK BAJO */
+
+.stock-bajo{
+
+border:2px solid red;
+
+}
+
+
+
+/* SIDEBAR CATEGORIAS */
+
 .sidebar-categorias{
 
 position:fixed;
@@ -318,7 +247,7 @@ height:100%;
 
 background:white;
 
-box-shadow:4px 0 10px rgba(0,0,0,0.2);
+box-shadow:4px 0 15px rgba(0,0,0,0.2);
 
 padding:20px;
 
@@ -336,7 +265,7 @@ left:0;
 
 .sidebar-categorias h3{
 
-margin-top:0;
+margin-bottom:15px;
 
 }
 
@@ -354,14 +283,136 @@ border:none;
 
 background:#f3f3f3;
 
+border-radius:6px;
+
 cursor:pointer;
 
-border-radius:6px;
+text-align:left;
 
 }
 
 .sidebar-categorias button:hover{
 
-background:#e0e0e0;
+background:#e5e5e5;
+
+}
+
+
+
+/* MODAL PRODUCTO */
+
+.modal{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,0.5);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+z-index:3000;
+
+}
+
+.modal-content{
+
+background:white;
+
+padding:20px;
+
+border-radius:10px;
+
+max-width:400px;
+
+width:90%;
+
+position:relative;
+
+}
+
+.modal-close{
+
+position:absolute;
+
+top:10px;
+
+right:15px;
+
+font-size:20px;
+
+cursor:pointer;
+
+}
+
+
+
+/* FOOTER */
+
+.footer{
+
+position:fixed;
+
+bottom:0;
+
+left:0;
+
+width:100%;
+
+background:white;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+padding:8px 0;
+
+box-shadow:0 -4px 10px rgba(0,0,0,0.1);
+
+z-index:1000;
+
+}
+
+
+
+/* BOTONES FOOTER */
+
+.footer button{
+
+border:none;
+
+background:none;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+font-size:12px;
+
+cursor:pointer;
+
+color:#444;
+
+}
+
+.footer button i{
+
+font-size:18px;
+
+margin-bottom:3px;
 
 }
